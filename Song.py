@@ -3,14 +3,23 @@ class Song:
 
     Attributes:
         title (str): The title of the song
-        artist (Artist): An artist object representing the songs creator.
+        artist (str): The name of the song's creator.
         duration (int): The duration of the song in seconds. May be zero.
+
+        Modify the program so that the class structure matches the simplified diagram: Artist object can hold
+        references to Album objects, and Album objects can hold references to Song objects
+        but there must be no circular references.
     """
 
     def __init__(self, title, artist, duration=0):
-        self.name = title
+        self.title = title
         self.artist = artist
         self.duration = duration
+
+    def get_title(self):
+        return self.title
+
+    name = property(get_title)
 
 
 class Album:
@@ -19,7 +28,7 @@ class Album:
     Attributes:
         name (str): The name of an album.
         year (ini): The year album was released.
-        artist (Artist): The artist responsible for the album. If not specified,
+        artist (str): The name of the artist responsible for the album. If not specified,
         the artist will default to an artist with the name "Various Artists".
         tracks (List(Song)): A list of the songs on the album.
 
@@ -31,7 +40,7 @@ class Album:
         self.name = name
         self.year = year
         if artist is None:
-            self.artist = Artist("Various Artists")
+            self.artist = "Various Artists"
         else:
             self.artist = artist
 
@@ -95,7 +104,7 @@ class Artist:
         album_found = find_object(name, self.albums)
         if album_found is None:
             print(name + " not found")
-            album_found = Album(name, year, self)
+            album_found = Album(name, year, self.name)
             self.add_album(album_found)
         else:
             print("Found album " + name)
@@ -138,7 +147,7 @@ def create_checkfile(artist_list):
         for new_artist in artist_list:
             for new_album in new_artist.albums:
                 for new_song in new_album.tracks:
-                    print("{0.name}\t{1.name}\t{1.year}\t{2.name}".format(new_artist, new_album, new_song),
+                    print("{0.name}\t{1.name}\t{1.year}\t{2.title}".format(new_artist, new_album, new_song),
                         file=checkfile)
 
 if __name__ == "__main__":
