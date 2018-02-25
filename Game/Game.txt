@@ -1,0 +1,5 @@
+New project started with L125 - Getters and Setters
+
+Project is going to be build with each class in different file.
+(It is better to keep related classes in the same file.)
+In this excersise it will be used while jumping between classes, what will be easier switching tabs than scrolling up and down. Also it will be used to show another method of importing a class.
