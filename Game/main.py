@@ -1,25 +1,29 @@
 from player import Player
-from enemy import Enemy, Troll, Vampire
-
-t1000 = Enemy("T1000", 12, 1)
-print(t1000)
-
-t1000.take_damage(2)
-print(t1000)
-
-t1000.take_damage(112)
-print(t1000)
+from enemy import Enemy, Troll, Vampire, VampireKing
 
 barney = Troll("Barney")
-print("Ugly troll - {}".format(barney))
+print("Ugly troll - {0._name}".format(barney))
 
 barney.grunt()
-
-gerard = Vampire("Gerard")
-print(gerard)
 
 barney.take_damage(15)
 print(barney)
 
+print("*" * 40)
+
+gerard = Vampire("Gerard")
+print(gerard)
+
 gerard.take_damage(10)
 print(gerard)
+
+while gerard._alive:
+    gerard.take_damage(1)
+    print(gerard)
+
+print("*" * 40)
+
+king = VampireKing("King")
+print(king)
+king.take_damage(8)
+print(king)
